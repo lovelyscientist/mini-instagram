@@ -10,9 +10,16 @@
     <body ng-app="instagramApp">
         <div class="main" ng-controller="photoController">
                 <div id="fixed" when-scrolled="loadMore()">
-                       <h3><strong> Welcome to mini-instagram</strong></h3>
+                       <div class="header">
+                            <img class="profilePhoto" ng-src="server/images/img2.jpg" ></img>
+                            <div class="profileDesription">
+                                <span>kygomusic </span> <button  type="button" class="btn btn-primary "> Follow </button><br>
+                                <h4><strong>Kygo</strong> GET CLOUD NINE HERE⬇️ smarturl.it/CloudNineiT</h4>
+                                <h4><strong>473</strong> posts  |  <strong>873тис.</strong> followers  |  <strong>85</strong> following </h4>   
+                            </div>
+                       </div>
                       <div>
-                            <div class="photo" ng-repeat="i in items">{{i.id}}</div>
+                            <img class="photo" ng-repeat="i in items" ng-src="{{'server/images/' + i.name}}"> </img>
                       </div>  
                       <button type="button" ng-click="startLoading()" class="btn-circle btn-lg">Load more</button>
                 </div>
@@ -25,6 +32,6 @@
         <script src="bower_components/angular-strap/dist/angular-strap.compat.js"></script>
         <script src="js/module.js"></script>
         <script src="js/controller.js"></script>
-        
+        <script src="js/directives/whenScrolled.js"></script>
     </body>
 </html> 

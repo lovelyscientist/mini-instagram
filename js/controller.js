@@ -30,9 +30,9 @@ instagramApp.controller('photoController', function photoController($scope, $htt
 
     $scope.loadMore = function() {
         if (isNeedToLoad) {
-          document.getElementsByTagName('button')[0].style.display = 'none';
+          document.getElementsByTagName('button')[1].style.display = 'none';
          
-          for (let i = 0; i < 3; i++) {
+          for (let i = 0; i < 9; i++) {
               $scope.items.push({id: counter, name: names[counter]});
               counter++;
           }

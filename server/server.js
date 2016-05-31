@@ -63,6 +63,10 @@ function getImages(p, callback) {
           if (err) {
               throw err;
           }
+          files = files.filter(function (file) {
+              return path.extname(file) === '.jpeg' || path.extname(file) === '.jpg';
+          });
+          console.log(files);
           callback(err, files);
     });
 }

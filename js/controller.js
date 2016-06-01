@@ -1,6 +1,9 @@
 instagramApp.controller('photoController', function photoController($scope, $http) {
-    var counter = 0,
-        names = [];
+    var names = [],
+        IMAGES_NUMBER = 30,
+        PRELOAD_NUMBER = 12,
+        counter = 0,
+        SCROLL_NUMBER = 6,
         isNeedToLoad = false;
         $scope.items = [];
 
@@ -10,29 +13,30 @@ instagramApp.controller('photoController', function photoController($scope, $htt
          $http({method: 'GET', url: '/firstImages'})
           .then(function successCallback(response) {
               names = response.data.src;
-              console.log($scope.names);
-              for (let i = 0; i < 12; i++) {
-                  $scope.items.push({id: counter, name: names[counter]});
-                  counter += 1;
+             
+              for (let i = 0; i < PRELOAD_NUMBER; i++) {
+                  $scope.items.push({id: counter, name: names[i]});
               }
-              counter = counter-12;
+  
           }, function errorCallback(response) {});
     }
          
     $scope.startLoading = function () {
         isNeedToLoad = true;
+
         $http({method: 'GET', url: '/images'})
         .then(function successCallback(response) {
               names = response.data.src;
+              console.log(names);
               $scope.loadMore();
         }, function errorCallback(response) {});
     }
 
     $scope.loadMore = function() {
-        if (isNeedToLoad) {
+        if (isNeedToLoad && counter + PRELOAD_NUMBER <= IMAGES_NUMBER - SCROLL_NUMBER) {
           document.getElementsByTagName('button')[1].style.display = 'none';
          
-          for (let i = 0; i < 9; i++) {
+          for (let i = 0; i < SCROLL_NUMBER; i++) {
               $scope.items.push({id: counter, name: names[counter]});
               counter++;
           }

@@ -3,13 +3,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="icon" href="http://getbootstrap.com/favicon.ico">
-        <link rel="stylesheet" href="style/style.css">
+        <link rel="stylesheet" href="client/style/style.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <title>Mini-Instagram</title>
     </head>
     <body ng-app="instagramApp">
         <div class="wrapper">
-            <div class="main" ng-controller="photoController">
+            <div class="main" ng-controller="PhotoController">
                     <div id="fixed" when-scrolled="loadMore()">
                            <div class="header">
                                 <img class="profilePhoto" ng-src="server/images/kygo.jpeg" ></img>
@@ -27,12 +27,9 @@
             </div>
         </div>
 
-        <script src="bower_components/angular/angular.js"></script>
-        <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
-        <script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
-        <script src="bower_components/angular-strap/dist/angular-strap.compat.js"></script>
-        <script src="js/module.js"></script>
-        <script src="js/controller.js"></script>
-        <script src="js/directives/whenScrolled.js"></script>
+        <script src="client/bower_components/angular/angular.js"></script>
+        <script src="client/js/module.js"></script>
+        <script src="client/js/controller.js"></script>
+        <script src="client/js/directives/whenScrolled.js"></script>
     </body>
 </html> 

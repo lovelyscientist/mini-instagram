@@ -37,19 +37,11 @@ server.on('request', function(req, res) {
 
   if (req.url === '/images') {
     getImages(__dirname + '/images', function (err, files) {
-       var names = {src: files.slice(12, files.length - 1)};
-           res.writeHead(200);
-           res.write(JSON.stringify(names));
-           res.end();
-    });
-  }
+       var names = {src: files};
 
-  if (req.url === '/firstImages') {
-    getImages(__dirname + '/images', function (err, files) {
-       var names = {src: files.slice(0,12)};
-           res.writeHead(200);
-           res.write(JSON.stringify(names));
-           res.end();
+       res.writeHead(200);
+       res.write(JSON.stringify(names));
+       res.end();
     });
   }
 

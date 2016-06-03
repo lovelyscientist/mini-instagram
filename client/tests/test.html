@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine-html.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/boot.min.js"></script>
+	</head>
+	<body>
+	</body>
+	 <script src="../bower_components/angular/angular.js"></script>
+	 <script src="../bower_components/angular-mocks/angular-mocks.js"></script>
+     <script src="../js/instagramModule.js"></script>
+     <script src="../js/instagramController.js"></script>
+     <script src="../js/whenScrolledDirective.js"></script>
+
+     <script>
+     	describe('test module', function(){
+   			 beforeEach(module('instagramApp'));
+
+	   			 describe('test controller', function () {
+
+	        		var scope, controller, http;
+
+			        beforeEach(inject(function($rootScope, $controller, $injector) {
+			            scope = $rootScope.$new();
+			            controller = $controller('PhotoController', {'$scope': scope});
+			            controller.$scope = scope;
+			        }));
+
+			        it('should have items variable clean', function(){
+			            expect(controller.$scope.items).toEqual([]);
+			        });
+
+			        it('images_length should be private', function(){
+			            expect(controller.$scope.IMAGES_LENGHT).toEqual(undefined);	
+			        });  
+			});
+		});
+     </script>
+</html>

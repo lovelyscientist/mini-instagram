@@ -15,6 +15,8 @@ function PhotoController($scope, $http, $timeout) {
 
     init();
 
+    this.message = 'hi';
+
     function init () {
          $http({method: 'GET', url: '/images'})
           .then(function successCallback(response) {

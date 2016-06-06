@@ -12,29 +12,5 @@
      <script src="../js/instagramModule.js"></script>
      <script src="../js/instagramController.js"></script>
      <script src="../js/whenScrolledDirective.js"></script>
-
-     <script>
-     	describe('test module', function(){
-   			 beforeEach(module('instagramApp'));
-
-	   			 describe('test controller', function () {
-
-	        		var scope, controller, http;
-
-			        beforeEach(inject(function($rootScope, $controller, $injector) {
-			            scope = $rootScope.$new();
-			            controller = $controller('PhotoController', {'$scope': scope});
-			            controller.$scope = scope;
-			        }));
-
-			        it('should have items variable clean', function(){
-			            expect(controller.$scope.items).toEqual([]);
-			        });
-
-			        it('images_length should be private', function(){
-			            expect(controller.$scope.IMAGES_LENGHT).toEqual(undefined);	
-			        });  
-			});
-		});
-     </script>
+     <script src="instagramController.spec.js"></script>
 </html>

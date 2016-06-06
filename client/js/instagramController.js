@@ -1,3 +1,5 @@
+'use strict';
+
 angular
     .module('instagramApp')
     .controller('PhotoController', PhotoController);
@@ -6,29 +8,47 @@ PhotoController.$inject = ['$scope', '$http', '$timeout'];
 
 function PhotoController($scope, $http, $timeout) {
     var names = [],
-        IMAGES_NUMBER = 0,
-        PRELOAD_NUMBER = 12,
         counter = 0,
-        SCROLL_NUMBER = 3,
         isNeedToLoad = false;
         $scope.items = [];
+        $scope.isHideBtn = false;
+        $scope.loadedCount = 0;
+        $scope.loaded = [];
+
+      
+    //export 
+    var IMAGES_NUMBER = 0;
+        $scope.PRELOAD_NUMBER = 12;
+    var SCROLL_NUMBER = 3;
 
     init();
-
-    this.message = 'hi';
 
     function init () {
          $http({method: 'GET', url: '/images'})
           .then(function successCallback(response) {
-              names = response.data.src;
-              IMAGES_NUMBER = names.length;
-              counter = 3;
-             
-              for (let i = 0; i < PRELOAD_NUMBER; i++) {
-                  $scope.items.push({id: counter, name: names[i]});
-              }
+                names = response.data.src;
+                IMAGES_NUMBER = names.length;
+
+                checkServerResponse(names);
+           
+                for (let i = 0; i < $scope.PRELOAD_NUMBER; i++) {
+                    $scope.items.push({id: counter, name: names[i]});
+                }
+
+                counter = $scope.PRELOAD_NUMBER;
   
           }, function errorCallback (response) {});
+    }
+
+    function checkServerResponse (response) {
+        if (response.length < $scope.PRELOAD_NUMBER) {
+            $scope.PRELOAD_NUMBER = response.length;
+            $scope.isHideBtn = true;
+
+            if (response.length === 0) {
+               $scope.isNoImages = true;
+            }
+        }
     }
          
     $scope.startLoading = function () {
@@ -36,9 +56,9 @@ function PhotoController($scope, $http, $timeout) {
         $scope.loadMore();
     }
 
-    $scope.loadMore = function (number) {
+    $scope.loadMore = function () {
        if (isNeedToLoad && counter + SCROLL_NUMBER <= IMAGES_NUMBER) {
-          document.getElementsByTagName('button')[1].style.display = 'none';
+         $scope.isHideBtn = true;
          
           for (let i = 0; i < SCROLL_NUMBER; i++) {
               $scope.items.push({id: counter, name: names[counter]});

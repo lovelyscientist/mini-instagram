@@ -10,16 +10,16 @@
     <body ng-app="instagramApp">
         <div class="wrapper">
             <div class="main" ng-controller="PhotoController">
-                    <div id="fixed" when-scrolled="loadMore()">
+                    <div id="fixed" when-scrolled="loadMore()" loadPhotos="loadMore()">
                            <div class="header">
-                                <img class="profilePhoto" ng-src="server/images/kygo.jpeg" ></img>
-                                <div class="profileDesription">
+                                <img class="profile-photo" ng-src="server/images/kygo.jpeg" ></img>
+                                <div class="profile-desription">
                                     <span>kygomusic </span> <button  type="button" class="follow"> Follow </button><br>
                                     <h4><strong>Kygo</strong> GET CLOUD NINE HERE ⬇️ smarturl.it/CloudNineiT</h4>
                                     <h4><strong>473</strong> posts  |  <strong>873k</strong> followers  |  <strong>85</strong> following </h4>   
                                 </div>
                            </div>
-                          <div class="imagesContainer">
+                          <div class="images-container">
                                 <div class="empty" ng-if="isNoImages" >No images to display.</div>
                                 <img class="photo" ng-repeat="i in items" ng-src="{{'server/images/' + i.name}}" image-on-load> </img>
                           </div>  
@@ -30,6 +30,7 @@
 
         <script src="client/bower_components/angular/angular.js"></script>
         <script src="client/js/instagramModule.js"></script>
+         <script src="client/js/getImagesService.js"></script>
         <script src="client/js/instagramController.js"></script>
         <script src="client/js/whenScrolledDirective.js"></script>
         <script src="client/js/imageOnLoadDirective.js"></script>
